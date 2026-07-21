@@ -3,713 +3,622 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MCQ Practice Zone</title>
+<title>MCQS Zone — Exam Mode</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;500;600&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap');
 
   :root {
-    --bg: #050810;
-    --bg2: #0a0f1e;
-    --bg3: #0f1628;
-    --neon-cyan: #00f5ff;
-    --neon-pink: #ff006e;
-    --neon-green: #39ff14;
-    --neon-yellow: #ffe600;
-    --neon-purple: #bf00ff;
-    --text: #e0e8ff;
-    --text-dim: #6a7a99;
-    --border: #1a2540;
-    --card: #0d1425;
-    --correct: #39ff14;
-    --wrong: #ff2244;
-    --glow-cyan: 0 0 10px #00f5ff, 0 0 30px #00f5ff44;
-    --glow-green: 0 0 10px #39ff14, 0 0 30px #39ff1444;
-    --glow-red: 0 0 10px #ff2244, 0 0 30px #ff224444;
-    --glow-pink: 0 0 10px #ff006e, 0 0 30px #ff006e44;
+    --navbar: #1b2233;
+    --navbar-2: #232c42;
+    --purple: #6f4fe0;
+    --purple-2: #8a63f2;
+    --purple-dark: #5638c9;
+    --orange: #e0a63e;
+    --orange-dark: #c68d29;
+    --red: #e6495c;
+    --red-dark: #cf3348;
+    --teal: #17a591;
+    --teal-dark: #128a79;
+    --bg-page: #eef1f6;
+    --card-white: #ffffff;
+    --border-grey: #dde2ea;
+    --text-dark: #2b3245;
+    --text-dim: #6b7385;
+    --green: #2fb872;
+    --green-bg: #e7f8ef;
+    --red-bg: #fdecee;
+    --shadow: 0 2px 10px rgba(30, 40, 70, 0.06);
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
   body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'Rajdhani', sans-serif;
+    background: var(--bg-page);
+    color: var(--text-dark);
+    font-family: 'Inter', sans-serif;
     min-height: 100vh;
-    overflow-x: hidden;
   }
 
-  /* Animated grid background */
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image:
-      linear-gradient(rgba(0,245,255,0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(0,245,255,0.03) 1px, transparent 1px);
-    background-size: 40px 40px;
-    pointer-events: none;
-    z-index: 0;
-  }
-
-  body::after {
-    content: '';
-    position: fixed;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(ellipse at 20% 20%, rgba(0,245,255,0.04) 0%, transparent 50%),
-                radial-gradient(ellipse at 80% 80%, rgba(191,0,255,0.04) 0%, transparent 50%);
-    pointer-events: none;
-    z-index: 0;
-  }
-
-  #app {
+  /* ── TOP NAVBAR ── */
+  .navbar {
+    background: var(--navbar);
+    color: #cfd6e8;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 22px;
     position: relative;
-    z-index: 1;
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-    min-height: 100vh;
+    z-index: 5;
   }
 
-  /* ── HEADER ── */
-  .header {
-    text-align: center;
-    padding: 30px 0 20px;
+  .navbar-left {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
   }
 
-  .header h1 {
-    font-family: 'Orbitron', sans-serif;
-    font-size: clamp(1.6rem, 5vw, 2.8rem);
-    font-weight: 900;
-    letter-spacing: 3px;
-    background: linear-gradient(90deg, var(--neon-cyan), var(--neon-purple), var(--neon-pink));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    text-shadow: none;
-    filter: drop-shadow(0 0 20px rgba(0,245,255,0.5));
+  .navbar-left .logo {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 800;
+    font-size: 1.05rem;
+    letter-spacing: 0.5px;
+    color: #ffffff;
   }
 
-  .header p {
+  .navbar-left .logo span { color: var(--orange); }
+
+  .navbar-left .sub {
+    font-size: 0.78rem;
+    color: #8b94ad;
+  }
+
+  .navbar-right {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    font-size: 0.82rem;
+    color: #a9b1c9;
+  }
+
+  .navbar-right .guest-block {
+    text-align: right;
+    line-height: 1.3;
+  }
+
+  .navbar-right .guest-block b { color: #e4e8f5; display: block; font-size: 0.8rem; }
+
+  .avatar-circle {
+    width: 34px; height: 34px;
+    border-radius: 50%;
+    background: #303a54;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem;
+    border: 1px solid #445;
+  }
+
+  /* ── TOP TIMER BADGE (overlaps navbar / purple bar) ── */
+  .top-timer-wrap {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    height: 0;
+  }
+
+  .top-timer {
+    position: absolute;
+    top: -34px;
+    width: 76px; height: 76px;
+    border-radius: 50%;
+    background: #ffffff;
+    border: 3px solid var(--purple-2);
+    box-shadow: 0 4px 16px rgba(111,79,224,0.35);
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    z-index: 6;
+  }
+
+  .top-timer .tt-num {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 1.4rem;
+    color: var(--purple-dark);
+    line-height: 1;
+  }
+
+  .top-timer .tt-lbl {
+    font-size: 0.55rem;
     color: var(--text-dim);
-    font-size: 1rem;
-    letter-spacing: 2px;
-    margin-top: 6px;
+    letter-spacing: 1px;
     text-transform: uppercase;
+    margin-top: 2px;
   }
 
-  /* ── SETUP SCREEN ── */
-  #setup-screen {
-    margin-top: 20px;
+  .top-timer.warn { border-color: var(--red); }
+  .top-timer.warn .tt-num { color: var(--red); animation: blink 0.6s infinite; }
+  @keyframes blink { 50% { opacity: 0.35; } }
+
+  /* ── PURPLE INFO BAR ── */
+  .info-bar {
+    background: linear-gradient(90deg, var(--purple-dark), var(--purple), var(--purple-2));
+    color: #fff;
+    min-height: 46px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 26px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.92rem;
+    font-weight: 500;
   }
 
-  .paste-section {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 24px;
-    margin-bottom: 20px;
+  .info-bar .q-of { letter-spacing: 0.3px; }
+
+  .info-bar .info-right {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    font-size: 0.85rem;
+    font-weight: 400;
+  }
+
+  .flag-icon-btn {
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.4);
+    color: #fff;
+    border-radius: 6px;
+    padding: 5px 12px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    display: flex; align-items: center; gap: 6px;
+    transition: background 0.2s;
+  }
+
+  .flag-icon-btn:hover { background: rgba(255,255,255,0.25); }
+  .flag-icon-btn.active { background: var(--orange); border-color: var(--orange); color: #3a2a05; font-weight: 600; }
+
+  /* ── MAIN LAYOUT ── */
+  #app-wrap {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 46px 20px 20px;
+  }
+
+  #setup-screen, #result-screen { max-width: 760px; margin: 0 auto; padding-top: 20px; }
+
+  .main-grid {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 20px;
+  }
+
+  @media (max-width: 860px) {
+    .main-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ── QUESTION CARD ── */
+  .q-card {
+    background: var(--card-white);
+    border: 1px solid var(--border-grey);
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    padding: 24px 26px;
+    margin-bottom: 14px;
+    min-height: 130px;
+  }
+
+  .q-text {
+    font-size: 1.12rem;
+    line-height: 1.6;
+    color: var(--text-dark);
+    font-weight: 500;
+  }
+
+  /* Answer section */
+  .answer-bar {
+    background: linear-gradient(90deg, var(--purple-dark), var(--purple-2));
+    color: #fff;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 0.92rem;
+    padding: 10px 20px;
+    border-radius: 8px 8px 0 0;
+    letter-spacing: 0.3px;
+  }
+
+  .answer-box {
+    background: var(--card-white);
+    border: 1px solid var(--border-grey);
+    border-top: none;
+    border-radius: 0 0 10px 10px;
+    box-shadow: var(--shadow);
+    padding: 16px;
+    margin-bottom: 16px;
+  }
+
+  .option-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    border: 1px solid var(--border-grey);
+    border-radius: 8px;
+    padding: 13px 16px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: all 0.15s;
+    background: #fff;
+  }
+
+  .option-row:last-child { margin-bottom: 0; }
+
+  .option-row:hover:not(.locked) {
+    border-color: var(--purple-2);
+    background: #f8f5ff;
+  }
+
+  .option-row .radio {
+    width: 18px; height: 18px;
+    border-radius: 50%;
+    border: 2px solid #b6bccb;
+    margin-top: 2px;
+    flex-shrink: 0;
     position: relative;
-    overflow: hidden;
   }
 
-  .paste-section::before {
+  .option-row.selected .radio { border-color: var(--purple); }
+  .option-row.selected .radio::after {
     content: '';
     position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 2px;
-    background: linear-gradient(90deg, var(--neon-cyan), var(--neon-purple), var(--neon-pink));
+    inset: 3px;
+    border-radius: 50%;
+    background: var(--purple);
   }
 
-  .section-label {
-    font-family: 'Orbitron', sans-serif;
-    font-size: 0.75rem;
-    letter-spacing: 3px;
-    color: var(--neon-cyan);
-    text-transform: uppercase;
-    margin-bottom: 12px;
+  .option-row span.opt-text { font-size: 1rem; line-height: 1.5; color: var(--text-dark); }
+
+  .option-row.correct {
+    border-color: var(--green);
+    background: var(--green-bg);
+  }
+  .option-row.correct .radio { border-color: var(--green); }
+  .option-row.correct .radio::after { background: var(--green); }
+  .option-row.correct span.opt-text { color: #1c7a4c; font-weight: 600; }
+
+  .option-row.wrong {
+    border-color: var(--red);
+    background: var(--red-bg);
+  }
+  .option-row.wrong .radio { border-color: var(--red); }
+  .option-row.wrong .radio::after { background: var(--red); }
+  .option-row.wrong span.opt-text { color: #b7233a; font-weight: 600; }
+
+  /* Feedback strip */
+  .feedback-strip {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding: 10px 16px;
+    border-radius: 8px;
+    margin-bottom: 14px;
+    display: none;
+  }
+  .feedback-strip.show { display: block; }
+  .feedback-strip.ok { background: var(--green-bg); color: #1c7a4c; border: 1px solid var(--green); }
+  .feedback-strip.bad { background: var(--red-bg); color: #b7233a; border: 1px solid var(--red); }
+  .feedback-strip.info { background: #eef1f6; color: var(--text-dark); border: 1px solid var(--border-grey); }
+
+  /* ── BOTTOM ACTION BAR ── */
+  .action-bar {
+    background: var(--navbar);
+    border-radius: 10px;
+    padding: 14px 18px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .btn {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 0.82rem;
+    border: none;
+    border-radius: 7px;
+    padding: 10px 16px;
+    cursor: pointer;
+    transition: filter 0.15s, transform 0.1s;
+    display: flex; align-items: center; gap: 6px;
+  }
+  .btn:active { transform: translateY(1px); }
+  .btn:hover { filter: brightness(1.08); }
+  .btn:disabled { opacity: 0.4; cursor: not-allowed; filter: none; }
+
+  .btn-finish { background: var(--red); color: #fff; }
+  .btn-flag-main { background: var(--purple); color: #fff; }
+  .btn-nav { background: var(--orange); color: #3a2a05; }
+  .btn-save { background: var(--teal); color: #fff; }
+
+  .nav-cluster { display: flex; gap: 8px; }
+
+  /* ── RIGHT SIDEBAR: SUMMARY ── */
+  .summary-panel {
+    background: var(--card-white);
+    border: 1px solid var(--border-grey);
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    padding: 18px;
+    height: fit-content;
+  }
+
+  .summary-title {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--purple-dark);
+    margin-bottom: 14px;
+  }
+
+  .summary-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 8px;
+    margin-bottom: 18px;
+  }
+
+  @media (max-width: 860px) { .summary-grid { grid-template-columns: repeat(10, 1fr); } }
+  @media (max-width: 500px) { .summary-grid { grid-template-columns: repeat(6, 1fr); } }
+
+  .s-circle {
+    width: 34px; height: 34px;
+    border-radius: 50%;
+    border: 1.5px solid var(--border-grey);
+    background: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.72rem;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    color: var(--text-dim);
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+
+  .s-circle:hover { border-color: var(--purple-2); }
+
+  .s-circle.current { background: var(--orange); border-color: var(--orange-dark); color: #3a2a05; }
+  .s-circle.answered { background: var(--teal); border-color: var(--teal-dark); color: #fff; }
+  .s-circle.correct { background: var(--green); border-color: #1c7a4c; color: #fff; }
+  .s-circle.wrong { background: var(--red); border-color: var(--red-dark); color: #fff; }
+  .s-circle.flagged { background: var(--purple); border-color: var(--purple-dark); color: #fff; }
+
+  .legend { font-size: 0.72rem; color: var(--text-dim); display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px; }
+  .legend-row { display: flex; align-items: center; gap: 8px; }
+  .legend-dot { width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; }
+
+  .pct-big {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 800;
+    font-size: 2.1rem;
+    color: var(--text-dark);
+    line-height: 1;
+  }
+  .pct-lbl { font-size: 0.7rem; color: var(--text-dim); letter-spacing: 1px; text-transform: uppercase; margin: 4px 0 14px; }
+
+  .sum-stat-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-top: 1px solid var(--border-grey);
+    font-size: 0.86rem;
+  }
+  .sum-stat-row b { color: var(--text-dark); }
+
+  /* ── SETUP SCREEN ── */
+  .setup-card {
+    background: var(--card-white);
+    border: 1px solid var(--border-grey);
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    padding: 22px 24px;
+    margin-bottom: 16px;
+  }
+
+  .setup-label {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 0.85rem;
+    color: var(--purple-dark);
+    margin-bottom: 10px;
   }
 
   textarea {
     width: 100%;
-    min-height: 180px;
-    background: var(--bg);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    color: var(--text);
-    font-family: 'Rajdhani', sans-serif;
-    font-size: 0.95rem;
-    padding: 14px;
+    min-height: 170px;
+    background: #fbfbfd;
+    border: 1px solid var(--border-grey);
+    border-radius: 8px;
+    color: var(--text-dark);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.92rem;
+    padding: 12px;
     resize: vertical;
-    transition: border-color 0.3s, box-shadow 0.3s;
     line-height: 1.5;
   }
+  textarea:focus { outline: none; border-color: var(--purple-2); }
+  textarea::placeholder { color: #9aa2b5; }
 
-  textarea:focus {
-    outline: none;
-    border-color: var(--neon-cyan);
-    box-shadow: var(--glow-cyan);
-  }
-
-  textarea::placeholder { color: var(--text-dim); }
-
-  .format-hint {
-    font-size: 0.82rem;
-    color: var(--text-dim);
-    margin-top: 10px;
-    line-height: 1.6;
-  }
-
-  .format-hint code {
-    background: var(--bg3);
-    color: var(--neon-cyan);
-    padding: 2px 6px;
-    border-radius: 4px;
-    font-size: 0.8rem;
-  }
-
-  /* Count selector */
-  .count-section {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 24px;
-    margin-bottom: 20px;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .count-section::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 2px;
-    background: linear-gradient(90deg, var(--neon-pink), var(--neon-purple));
-  }
-
-  .count-pills {
-    display: flex;
-    gap: 12px;
-    flex-wrap: wrap;
-    margin-top: 12px;
-  }
-
-  .pill {
-    padding: 10px 22px;
-    border-radius: 50px;
-    border: 1px solid var(--border);
-    background: var(--bg);
-    color: var(--text-dim);
-    cursor: pointer;
-    font-family: 'Orbitron', sans-serif;
-    font-size: 0.85rem;
-    letter-spacing: 1px;
-    transition: all 0.2s;
-    user-select: none;
-  }
-
-  .pill:hover {
-    border-color: var(--neon-cyan);
-    color: var(--neon-cyan);
-  }
-
-  .pill.active {
-    border-color: var(--neon-cyan);
-    background: rgba(0,245,255,0.1);
-    color: var(--neon-cyan);
-    box-shadow: var(--glow-cyan);
-  }
-
-  /* Timer selector */
-  .timer-row {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    flex-wrap: wrap;
-    margin-top: 12px;
-  }
-
-  .timer-label {
-    color: var(--text-dim);
+  .name-input {
+    width: 100%;
+    background: #fbfbfd;
+    border: 1px solid var(--border-grey);
+    border-radius: 8px;
+    color: var(--text-dark);
+    font-family: 'Inter', sans-serif;
     font-size: 0.95rem;
+    padding: 12px 14px;
   }
+  .name-input:focus { outline: none; border-color: var(--purple-2); }
+  .name-input::placeholder { color: #9aa2b5; }
 
-  .timer-pills {
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-  }
+  .format-hint { font-size: 0.78rem; color: var(--text-dim); margin-top: 8px; line-height: 1.6; }
+  .format-hint code { background: #eef1f6; color: var(--purple-dark); padding: 2px 6px; border-radius: 4px; }
 
-  /* Start button */
-  .btn-start {
-    width: 100%;
-    padding: 18px;
-    background: linear-gradient(135deg, rgba(0,245,255,0.15), rgba(191,0,255,0.15));
-    border: 1px solid var(--neon-cyan);
-    border-radius: 12px;
-    color: var(--neon-cyan);
-    font-family: 'Orbitron', sans-serif;
-    font-size: 1rem;
-    letter-spacing: 4px;
-    cursor: pointer;
-    transition: all 0.3s;
-    text-transform: uppercase;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .btn-start::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, rgba(0,245,255,0.1), rgba(191,0,255,0.1));
-    opacity: 0;
-    transition: opacity 0.3s;
-  }
-
-  .btn-start:hover {
-    box-shadow: var(--glow-cyan);
-    transform: translateY(-2px);
-  }
-
-  .btn-start:hover::before { opacity: 1; }
-
-  /* ── QUIZ SCREEN ── */
-  #quiz-screen { display: none; }
-
-  /* Stats bar */
-  .stats-bar {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 10px;
-    margin-bottom: 20px;
-  }
-
-  .stat-box {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 12px 10px;
-    text-align: center;
-  }
-
-  .stat-value {
-    font-family: 'Orbitron', sans-serif;
-    font-size: 1.3rem;
-    font-weight: 700;
-    line-height: 1;
-  }
-
-  .stat-label {
-    font-size: 0.7rem;
+  .pill-row { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 10px; }
+  .setup-pill {
+    padding: 8px 18px;
+    border-radius: 50px;
+    border: 1.5px solid var(--border-grey);
+    background: #fff;
     color: var(--text-dim);
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    margin-top: 4px;
-  }
-
-  .stat-box.timer-box .stat-value { color: var(--neon-yellow); }
-  .stat-box.score-box .stat-value { color: var(--neon-green); }
-  .stat-box.wrong-box .stat-value { color: var(--neon-pink); }
-  .stat-box.num-box .stat-value { color: var(--neon-cyan); }
-
-  /* Progress bar */
-  .progress-wrap {
-    background: var(--bg3);
-    border-radius: 50px;
-    height: 6px;
-    margin-bottom: 24px;
-    overflow: hidden;
-    position: relative;
-  }
-
-  .progress-fill {
-    height: 100%;
-    border-radius: 50px;
-    background: linear-gradient(90deg, var(--neon-cyan), var(--neon-purple));
-    transition: width 0.4s ease;
-    box-shadow: 0 0 8px var(--neon-cyan);
-  }
-
-  /* Question card */
-  .q-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 28px;
-    margin-bottom: 18px;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .q-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 2px;
-    background: linear-gradient(90deg, var(--neon-cyan), var(--neon-purple));
-  }
-
-  .q-number {
-    font-family: 'Orbitron', sans-serif;
-    font-size: 0.7rem;
-    color: var(--neon-cyan);
-    letter-spacing: 3px;
-    margin-bottom: 12px;
-  }
-
-  .q-text {
-    font-size: 1.15rem;
-    line-height: 1.6;
-    color: var(--text);
-    font-weight: 500;
-    letter-spacing: 0.3px;
-  }
-
-  /* Options */
-  .options-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-    margin-bottom: 20px;
-  }
-
-  @media (max-width: 500px) {
-    .options-grid { grid-template-columns: 1fr; }
-    .stats-bar { grid-template-columns: repeat(2, 1fr); }
-  }
-
-  .option-btn {
-    background: var(--bg3);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 14px 16px;
-    color: var(--text);
-    font-family: 'Rajdhani', sans-serif;
-    font-size: 1rem;
-    font-weight: 500;
     cursor: pointer;
-    text-align: left;
-    transition: all 0.2s;
-    display: flex;
-    align-items: flex-start;
-    gap: 10px;
-    line-height: 1.4;
-    word-break: break-word;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 600;
+    transition: all 0.15s;
   }
+  .setup-pill:hover { border-color: var(--purple-2); }
+  .setup-pill.active { background: var(--purple); border-color: var(--purple-dark); color: #fff; }
 
-  .option-btn:hover:not(:disabled) {
-    border-color: var(--neon-cyan);
-    background: rgba(0,245,255,0.06);
-    transform: translateY(-2px);
-  }
+  .timer-label-row { font-size: 0.85rem; color: var(--text-dim); margin: 16px 0 6px; font-weight: 600; }
 
-  .option-letter {
-    font-family: 'Orbitron', sans-serif;
-    font-size: 0.75rem;
-    color: var(--neon-cyan);
-    min-width: 20px;
-    margin-top: 2px;
-  }
-
-  .option-btn.correct {
-    border-color: var(--correct);
-    background: rgba(57,255,20,0.1);
-    box-shadow: var(--glow-green);
-    color: var(--correct);
-  }
-
-  .option-btn.correct .option-letter { color: var(--correct); }
-
-  .option-btn.wrong {
-    border-color: var(--wrong);
-    background: rgba(255,34,68,0.1);
-    box-shadow: var(--glow-red);
-    color: var(--wrong);
-  }
-
-  .option-btn.wrong .option-letter { color: var(--wrong); }
-
-  .option-btn:disabled { cursor: default; transform: none; }
-
-  /* Feedback */
-  .feedback-bar {
-    height: 48px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 10px;
-    font-family: 'Orbitron', sans-serif;
-    font-size: 0.85rem;
-    letter-spacing: 2px;
-    margin-bottom: 16px;
-    opacity: 0;
-    transition: opacity 0.3s;
-  }
-
-  .feedback-bar.show { opacity: 1; }
-  .feedback-bar.correct-fb { background: rgba(57,255,20,0.1); color: var(--correct); border: 1px solid var(--correct); box-shadow: var(--glow-green); }
-  .feedback-bar.wrong-fb { background: rgba(255,34,68,0.1); color: var(--wrong); border: 1px solid var(--wrong); box-shadow: var(--glow-red); }
-
-  /* Next button */
-  .btn-next {
+  .btn-launch {
     width: 100%;
-    padding: 16px;
-    background: transparent;
-    border: 1px solid var(--neon-purple);
-    border-radius: 12px;
-    color: var(--neon-purple);
-    font-family: 'Orbitron', sans-serif;
-    font-size: 0.85rem;
-    letter-spacing: 3px;
+    padding: 15px;
+    background: linear-gradient(90deg, var(--purple-dark), var(--purple-2));
+    border: none;
+    border-radius: 10px;
+    color: #fff;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    letter-spacing: 1px;
     cursor: pointer;
-    transition: all 0.3s;
-    display: none;
+    box-shadow: 0 4px 14px rgba(111,79,224,0.35);
+    transition: transform 0.1s, filter 0.15s;
   }
+  .btn-launch:hover { filter: brightness(1.08); }
+  .btn-launch:active { transform: translateY(1px); }
 
-  .btn-next:hover {
-    background: rgba(191,0,255,0.1);
-    box-shadow: var(--glow-pink);
-  }
+  .loading-msg { text-align: center; padding: 14px; color: var(--purple-dark); font-family: 'Poppins', sans-serif; font-size: 0.82rem; font-weight: 600; display: none; }
 
   /* ── RESULT SCREEN ── */
-  #result-screen { display: none; }
-
   .result-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 20px;
-    padding: 36px 28px;
+    background: var(--card-white);
+    border: 1px solid var(--border-grey);
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    padding: 34px 26px;
     text-align: center;
-    position: relative;
-    overflow: hidden;
-    margin-bottom: 20px;
+    margin-bottom: 18px;
   }
 
-  .result-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 3px;
-    background: linear-gradient(90deg, var(--neon-cyan), var(--neon-purple), var(--neon-pink));
-  }
-
-  .result-score-big {
-    font-family: 'Orbitron', sans-serif;
-    font-size: clamp(3rem, 12vw, 6rem);
-    font-weight: 900;
-    background: linear-gradient(135deg, var(--neon-cyan), var(--neon-green));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    filter: drop-shadow(0 0 20px rgba(0,245,255,0.6));
+  .result-pct {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 800;
+    font-size: clamp(2.6rem, 10vw, 4rem);
+    color: var(--purple-dark);
     line-height: 1;
   }
-
-  .result-label {
-    font-family: 'Orbitron', sans-serif;
-    font-size: 0.75rem;
-    letter-spacing: 3px;
-    color: var(--text-dim);
-    margin-top: 6px;
-    text-transform: uppercase;
-  }
+  .result-lbl { font-size: 0.78rem; color: var(--text-dim); letter-spacing: 2px; text-transform: uppercase; margin-top: 6px; }
 
   .result-stats {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
-    margin-top: 28px;
+    gap: 14px;
+    margin-top: 24px;
   }
-
-  .res-stat {
-    background: var(--bg3);
-    border-radius: 12px;
-    padding: 16px 10px;
-    border: 1px solid var(--border);
-  }
-
-  .res-stat-val {
-    font-family: 'Orbitron', sans-serif;
-    font-size: 1.5rem;
-    font-weight: 700;
-  }
-
-  .res-stat-lbl {
-    font-size: 0.75rem;
-    color: var(--text-dim);
-    margin-top: 4px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-  }
-
-  /* Review section */
-  .review-section {
-    margin-top: 10px;
-  }
+  .res-stat { background: #f6f7fb; border-radius: 10px; padding: 14px 8px; border: 1px solid var(--border-grey); }
+  .res-stat-val { font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.4rem; }
+  .res-stat-lbl { font-size: 0.72rem; color: var(--text-dim); margin-top: 4px; text-transform: uppercase; letter-spacing: 1px; }
 
   .btn-review-toggle {
     width: 100%;
-    padding: 14px;
-    background: transparent;
-    border: 1px solid var(--neon-yellow);
-    border-radius: 12px;
-    color: var(--neon-yellow);
-    font-family: 'Orbitron', sans-serif;
-    font-size: 0.8rem;
-    letter-spacing: 2px;
+    padding: 13px;
+    background: #fff;
+    border: 1.5px solid var(--orange);
+    border-radius: 10px;
+    color: var(--orange-dark);
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 0.82rem;
     cursor: pointer;
-    transition: all 0.3s;
-    margin-bottom: 14px;
+    margin-bottom: 12px;
   }
-
-  .btn-review-toggle:hover {
-    background: rgba(255,230,0,0.08);
-    box-shadow: 0 0 10px rgba(255,230,0,0.3);
-  }
+  .btn-review-toggle:hover { background: #fdf6ea; }
 
   .review-list { display: none; }
   .review-list.open { display: block; }
 
   .review-item {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 18px;
-    margin-bottom: 12px;
-    border-left: 3px solid var(--wrong);
-  }
-
-  .review-item-q {
-    font-size: 0.95rem;
-    line-height: 1.5;
-    margin-bottom: 10px;
-    color: var(--text);
-  }
-
-  .review-item-ans {
-    font-size: 0.88rem;
-    display: flex;
-    gap: 6px;
-    align-items: center;
-    flex-wrap: wrap;
-  }
-
-  .review-tag {
-    padding: 3px 10px;
-    border-radius: 50px;
-    font-size: 0.78rem;
-    font-family: 'Orbitron', sans-serif;
-    letter-spacing: 1px;
-  }
-
-  .tag-your { background: rgba(255,34,68,0.15); color: var(--wrong); border: 1px solid var(--wrong); }
-  .tag-correct { background: rgba(57,255,20,0.15); color: var(--correct); border: 1px solid var(--correct); }
-
-  /* Action buttons */
-  .action-btns {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-    margin-top: 14px;
-  }
-
-  .btn-action {
+    background: #fff;
+    border: 1px solid var(--border-grey);
+    border-left: 4px solid var(--red);
+    border-radius: 10px;
     padding: 16px;
-    border-radius: 12px;
-    font-family: 'Orbitron', sans-serif;
-    font-size: 0.78rem;
-    letter-spacing: 2px;
-    cursor: pointer;
-    transition: all 0.3s;
-    border: 1px solid;
+    margin-bottom: 10px;
   }
+  .review-item-q { font-size: 0.94rem; line-height: 1.5; margin-bottom: 8px; color: var(--text-dark); }
+  .review-item-ans { font-size: 0.84rem; display: flex; gap: 6px; flex-wrap: wrap; }
+  .review-tag { padding: 3px 10px; border-radius: 50px; font-size: 0.75rem; font-weight: 600; }
+  .tag-your { background: var(--red-bg); color: #b7233a; border: 1px solid var(--red); }
+  .tag-correct { background: var(--green-bg); color: #1c7a4c; border: 1px solid var(--green); }
 
-  .btn-again {
-    background: rgba(0,245,255,0.1);
-    border-color: var(--neon-cyan);
-    color: var(--neon-cyan);
-  }
-
-  .btn-again:hover { box-shadow: var(--glow-cyan); }
-
-  .btn-reset {
-    background: rgba(191,0,255,0.1);
-    border-color: var(--neon-purple);
-    color: var(--neon-purple);
-  }
-
-  .btn-reset:hover { box-shadow: var(--glow-pink); }
-
-  /* Particles */
-  .particle {
-    position: fixed;
-    pointer-events: none;
-    border-radius: 50%;
-    animation: floatUp 1s ease-out forwards;
-    z-index: 999;
-  }
-
-  @keyframes floatUp {
-    0% { opacity: 1; transform: translateY(0) scale(1); }
-    100% { opacity: 0; transform: translateY(-80px) scale(0.3); }
-  }
-
-  /* Scan line animation */
-  @keyframes scanline {
-    0% { transform: translateY(-100%); }
-    100% { transform: translateY(100vh); }
-  }
-
-  .scanline {
-    position: fixed;
-    left: 0; right: 0;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, rgba(0,245,255,0.08), transparent);
-    animation: scanline 4s linear infinite;
-    pointer-events: none;
-    z-index: 0;
-  }
-
-  /* Timer warning */
-  .timer-warn { color: var(--neon-pink) !important; animation: blink 0.5s infinite; }
-  @keyframes blink { 50% { opacity: 0.4; } }
-
-  /* Loading */
-  .loading-msg {
-    text-align: center;
-    padding: 20px;
-    color: var(--neon-cyan);
-    font-family: 'Orbitron', sans-serif;
+  .action-btns { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 14px; }
+  .btn-action {
+    padding: 15px;
+    border-radius: 10px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
     font-size: 0.8rem;
-    letter-spacing: 2px;
-    display: none;
+    cursor: pointer;
+    border: none;
+    color: #fff;
   }
+  .btn-again { background: var(--purple); }
+  .btn-reset { background: var(--teal); }
+  .btn-again:hover, .btn-reset:hover { filter: brightness(1.1); }
 
-  /* Scrollbar */
-  ::-webkit-scrollbar { width: 6px; }
-  ::-webkit-scrollbar-track { background: var(--bg); }
-  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
-  ::-webkit-scrollbar-thumb:hover { background: var(--neon-cyan); }
+  #quiz-screen { display: none; }
+  #result-screen { display: none; }
 </style>
 </head>
 <body>
 
-<div class="scanline"></div>
-
-<div id="app">
-  <div class="header">
-    <h1>⚡ MCQ ZONE</h1>
-    <p>Practice Engine Made by ABUZAR</p>
+<div class="navbar">
+  <div class="navbar-left">
+    <div class="logo">⚡ MCQ <span>ZONE</span></div>
+    <div class="sub">Practice Engine by Abuzar</div>
   </div>
+  <div class="navbar-right">
+    <span id="clock-display">--:--</span>
+    <div class="guest-block"><b id="nav-name">GUEST</b><span id="nav-role">Candidate</span></div>
+    <div class="avatar-circle">👤</div>
+  </div>
+</div>
+
+<div class="top-timer-wrap">
+  <div class="top-timer" id="top-timer">
+    <div class="tt-num" id="top-timer-num">--</div>
+    <div class="tt-lbl">sec</div>
+  </div>
+</div>
+
+<div class="info-bar" id="info-bar">
+  <div class="q-of" id="info-left">MCQ Zone — Setup</div>
+  <div class="info-right" id="info-right"></div>
+</div>
+
+<div id="app-wrap">
 
   <!-- ── SETUP ── -->
   <div id="setup-screen">
+    <div class="setup-card">
+      <div class="setup-label">👤 YOUR NAME</div>
+      <input type="text" class="name-input" id="name-input" placeholder="Enter your name (optional — defaults to Guest)">
+    </div>
 
-    <div class="paste-section">
-      <div class="section-label">📋 Paste Your MCQs</div>
+    <div class="setup-card">
+      <div class="setup-label">📋 PASTE YOUR MCQs</div>
       <textarea id="mcq-input" placeholder="Paste your MCQs here...
 
 Supported formats:
@@ -724,99 +633,98 @@ Answer: B"></textarea>
       </div>
     </div>
 
-    <div class="count-section">
-      <div class="section-label">🎯 Questions Per Round</div>
-      <div class="count-pills">
-        <div class="pill" data-count="10">10</div>
-        <div class="pill active" data-count="20">20</div>
-        <div class="pill" data-count="50">50</div>
-        <div class="pill" data-count="all">ALL</div>
+    <div class="setup-card">
+      <div class="setup-label">🎯 QUESTIONS PER ROUND</div>
+      <div class="pill-row">
+        <div class="setup-pill" data-count="10">10</div>
+        <div class="setup-pill active" data-count="20">20</div>
+        <div class="setup-pill" data-count="50">50</div>
+        <div class="setup-pill" data-count="all">ALL</div>
       </div>
 
-      <div class="timer-row" style="margin-top: 20px;">
-        <div class="section-label" style="margin:0">⏱ Seconds/Question</div>
-        <div class="timer-pills">
-          <div class="pill" data-timer="0">OFF</div>
-          <div class="pill" data-timer="15">15s</div>
-          <div class="pill active" data-timer="30">30s</div>
-          <div class="pill" data-timer="60">60s</div>
-        </div>
+      <div class="timer-label-row">⏱ SECONDS PER QUESTION</div>
+      <div class="pill-row">
+        <div class="setup-pill" data-timer="0">OFF</div>
+        <div class="setup-pill" data-timer="15">15s</div>
+        <div class="setup-pill active" data-timer="30">30s</div>
+        <div class="setup-pill" data-timer="60">60s</div>
       </div>
     </div>
 
     <div class="loading-msg" id="loading-msg">⚙ PARSING QUESTIONS...</div>
 
-    <button class="btn-start" id="btn-start">
-      ▶ &nbsp; LAUNCH QUIZ
-    </button>
+    <button class="btn-launch" id="btn-start">▶ &nbsp; START EXAM</button>
   </div>
 
-  <!-- ── QUIZ ── -->
+  <!-- ── QUIZ (EXAM) ── -->
   <div id="quiz-screen">
-    <div class="stats-bar">
-      <div class="stat-box num-box">
-        <div class="stat-value" id="stat-num">1/20</div>
-        <div class="stat-label">Question</div>
+    <div class="main-grid">
+      <div>
+        <div class="q-card">
+          <div class="q-text" id="q-text">Loading...</div>
+        </div>
+
+        <div class="answer-bar">Answer</div>
+        <div class="answer-box" id="options-grid"></div>
+
+        <div class="feedback-strip" id="feedback-bar"></div>
+
+        <div class="action-bar">
+          <button class="btn btn-finish" id="btn-finish">🏁 Finish Exam</button>
+          <button class="btn btn-flag-main" id="btn-flag">🚩 Flag</button>
+          <div class="nav-cluster">
+            <button class="btn btn-nav" id="btn-first">« First</button>
+            <button class="btn btn-nav" id="btn-prev">‹ Previous</button>
+            <button class="btn btn-nav" id="btn-next">Next ›</button>
+            <button class="btn btn-nav" id="btn-last">Last »</button>
+          </div>
+          <button class="btn btn-save" id="btn-save">💾 Save</button>
+        </div>
       </div>
-      <div class="stat-box score-box">
-        <div class="stat-value" id="stat-score">0</div>
-        <div class="stat-label">Correct</div>
-      </div>
-      <div class="stat-box wrong-box">
-        <div class="stat-value" id="stat-wrong">0</div>
-        <div class="stat-label">Wrong</div>
-      </div>
-      <div class="stat-box timer-box">
-        <div class="stat-value" id="stat-timer">--</div>
-        <div class="stat-label">Seconds</div>
+
+      <div class="summary-panel">
+        <div class="summary-title">Summary</div>
+        <div class="summary-grid" id="summary-grid"></div>
+
+        <div class="legend">
+          <div class="legend-row"><span class="legend-dot" style="background:var(--orange)"></span> Current question</div>
+          <div class="legend-row"><span class="legend-dot" style="background:var(--teal)"></span> Answered</div>
+          <div class="legend-row"><span class="legend-dot" style="background:var(--purple)"></span> Flagged for review</div>
+          <div class="legend-row"><span class="legend-dot" style="background:#fff;border:1.5px solid var(--border-grey)"></span> Not answered</div>
+        </div>
+
+        <div class="pct-big" id="sum-pct">0%</div>
+        <div class="pct-lbl">Progress</div>
+
+        <div class="sum-stat-row"><span>Attempted</span><b id="sum-attempted">0</b></div>
+        <div class="sum-stat-row"><span>Flagged</span><b id="sum-flagged">0</b></div>
+        <div class="sum-stat-row"><span>Total</span><b id="sum-total">0</b></div>
       </div>
     </div>
-
-    <div class="progress-wrap">
-      <div class="progress-fill" id="progress-fill" style="width:0%"></div>
-    </div>
-
-    <div class="q-card">
-      <div class="q-number" id="q-number">QUESTION 1 OF 20</div>
-      <div class="q-text" id="q-text">Loading...</div>
-    </div>
-
-    <div class="options-grid" id="options-grid"></div>
-
-    <div class="feedback-bar" id="feedback-bar"></div>
-
-    <button class="btn-next" id="btn-next">NEXT QUESTION →</button>
   </div>
 
   <!-- ── RESULTS ── -->
   <div id="result-screen">
     <div class="result-card">
-      <div class="result-score-big" id="result-pct">--</div>
-      <div class="result-label">Final Score</div>
+      <div class="result-pct" id="result-pct">--</div>
+      <div class="result-lbl">Final Score</div>
       <div class="result-stats">
-        <div class="res-stat">
-          <div class="res-stat-val" id="res-correct" style="color:var(--neon-green)">0</div>
-          <div class="res-stat-lbl">Correct</div>
-        </div>
-        <div class="res-stat">
-          <div class="res-stat-val" id="res-wrong" style="color:var(--neon-pink)">0</div>
-          <div class="res-stat-lbl">Wrong</div>
-        </div>
-        <div class="res-stat">
-          <div class="res-stat-val" id="res-total" style="color:var(--neon-cyan)">0</div>
-          <div class="res-stat-lbl">Total</div>
-        </div>
+        <div class="res-stat"><div class="res-stat-val" id="res-correct" style="color:var(--green)">0</div><div class="res-stat-lbl">Correct</div></div>
+        <div class="res-stat"><div class="res-stat-val" id="res-wrong" style="color:var(--red)">0</div><div class="res-stat-lbl">Wrong</div></div>
+        <div class="res-stat"><div class="res-stat-val" id="res-total" style="color:var(--purple)">0</div><div class="res-stat-lbl">Total</div></div>
       </div>
     </div>
 
-    <div class="review-section">
+    <div>
       <button class="btn-review-toggle" id="btn-review-toggle">📝 REVIEW WRONG ANSWERS</button>
       <div class="review-list" id="review-list"></div>
     </div>
 
+    <button class="btn-action btn-practice-wrong" id="btn-practice-wrong" style="display:none; width:100%; margin-top:14px; background:var(--orange-dark); color:#fff;">🎯 Practice Wrong Answers Again</button>
+
     <div class="action-btns">
-      <button class="btn-action btn-again" id="btn-again">🔄 PLAY AGAIN</button>
-      <button class="btn-action btn-reset" id="btn-reset">🏠 NEW QUIZ</button>
+      <button class="btn-action btn-again" id="btn-again">🔄 Retake Exam</button>
+      <button class="btn-action btn-reset" id="btn-reset">🏠 New Exam</button>
     </div>
   </div>
 
@@ -825,32 +733,30 @@ Answer: B"></textarea>
 <script>
 // ── STATE ──
 let allQuestions = [];
-let sessionQuestions = [];
+let sessionQuestions = []; // each: { question, options[], answerIndex, answerLetter, shuffledOptions[], correctShuffledIndex, selected:null, answered:false, flagged:false, timedOut:false }
 let currentIndex = 0;
-let score = 0;
-let wrongAnswers = [];
+let userName = 'Guest';
 let selectedCount = 20;
 let timerSeconds = 30;
 let timerInterval = null;
 let timeLeft = 0;
-let answered = false;
+
+// ── CLOCK ──
+function updateClock() {
+  const now = new Date();
+  let h = now.getHours();
+  const m = now.getMinutes().toString().padStart(2,'0');
+  const ampm = h >= 12 ? 'PM' : 'AM';
+  h = h % 12; if (h === 0) h = 12;
+  document.getElementById('clock-display').textContent = `${h}:${m} ${ampm}`;
+}
+updateClock();
+setInterval(updateClock, 1000 * 30);
 
 // ── PARSER ──
 function parseQuestions(raw) {
   const questions = [];
-
-  // Normalize: collapse multiple spaces/newlines in option lines
-  // Strategy: split by question number patterns or just process line by line
   const text = raw.trim();
-
-  // Split into question blocks — try numbered first, then by Answer: pattern
-  let blocks = [];
-
-  // Try splitting by "Answer:" boundary — collect each Q block
-  const answerSplit = text.split(/(?=\b(?:\d+[\.\)]\s+)?[A-Za-z].*?(?:\n|(?=[A-D]\)|[A-D]\.).*?Answer\s*:\s*[A-D]))/);
-
-  // Better approach: find all Answer: occurrences and extract backwards
-  // Use regex to find complete question patterns
   const pattern = /(\d+[\.\)]?\s+)?(.+?)\s*(?:A[\.\)]\s*(.+?)\s*B[\.\)]\s*(.+?)\s*C[\.\)]\s*(.+?)\s*D[\.\)]\s*(.+?))\s*Answer\s*:\s*([A-Da-d])/gs;
 
   let match;
@@ -869,7 +775,6 @@ function parseQuestions(raw) {
       });
     }
   }
-
   return questions;
 }
 
@@ -883,22 +788,21 @@ function shuffle(arr) {
   return a;
 }
 
-// ── UI HELPERS ──
 function show(id) { document.getElementById(id).style.display = 'block'; }
 function hide(id) { document.getElementById(id).style.display = 'none'; }
 
-// ── PILL SELECTION ──
-document.querySelectorAll('.count-pills .pill').forEach(p => {
+// ── SETUP PILLS ──
+document.querySelectorAll('.setup-pill[data-count]').forEach(p => {
   p.addEventListener('click', () => {
-    document.querySelectorAll('.count-pills .pill').forEach(x => x.classList.remove('active'));
+    document.querySelectorAll('.setup-pill[data-count]').forEach(x => x.classList.remove('active'));
     p.classList.add('active');
     selectedCount = p.dataset.count === 'all' ? 'all' : parseInt(p.dataset.count);
   });
 });
 
-document.querySelectorAll('.timer-pills .pill').forEach(p => {
+document.querySelectorAll('.setup-pill[data-timer]').forEach(p => {
   p.addEventListener('click', () => {
-    document.querySelectorAll('.timer-pills .pill').forEach(x => x.classList.remove('active'));
+    document.querySelectorAll('.setup-pill[data-timer]').forEach(x => x.classList.remove('active'));
     p.classList.add('active');
     timerSeconds = parseInt(p.dataset.timer);
   });
@@ -908,6 +812,11 @@ document.querySelectorAll('.timer-pills .pill').forEach(p => {
 document.getElementById('btn-start').addEventListener('click', () => {
   const raw = document.getElementById('mcq-input').value.trim();
   if (!raw) { alert('Please paste your MCQs first!'); return; }
+
+  const nameVal = document.getElementById('name-input').value.trim();
+  userName = nameVal || 'Guest';
+  document.getElementById('nav-name').textContent = userName;
+  document.getElementById('nav-role').textContent = 'Candidate';
 
   document.getElementById('loading-msg').style.display = 'block';
 
@@ -920,13 +829,24 @@ document.getElementById('btn-start').addEventListener('click', () => {
       return;
     }
 
-    // Pick questions
     const shuffled = shuffle(allQuestions);
-    if (selectedCount === 'all') {
-      sessionQuestions = shuffled;
-    } else {
-      sessionQuestions = shuffled.slice(0, Math.min(selectedCount, shuffled.length));
-    }
+    const picked = selectedCount === 'all' ? shuffled : shuffled.slice(0, Math.min(selectedCount, shuffled.length));
+
+    // Precompute per-question shuffled options + state
+    sessionQuestions = picked.map(q => {
+      const indices = shuffle([0,1,2,3]);
+      const shuffledOptions = indices.map(i => q.options[i]);
+      const correctShuffledIndex = indices.indexOf(q.answerIndex);
+      return {
+        ...q,
+        shuffledOptions,
+        correctShuffledIndex,
+        selected: null,
+        answered: false,
+        flagged: false,
+        timedOut: false
+      };
+    });
 
     startQuiz();
   }, 100);
@@ -934,167 +854,167 @@ document.getElementById('btn-start').addEventListener('click', () => {
 
 function startQuiz() {
   currentIndex = 0;
-  score = 0;
-  wrongAnswers = [];
-
   hide('setup-screen');
   hide('result-screen');
   show('quiz-screen');
+  renderSummary();
+  loadQuestion(0);
+}
 
-  loadQuestion();
+// ── SUMMARY SIDEBAR ── 
+function renderSummary() {
+  const grid = document.getElementById('summary-grid');
+  grid.innerHTML = '';
+  sessionQuestions.forEach((q, i) => {
+    const c = document.createElement('div');
+    c.className = 's-circle';
+    c.textContent = (i + 1).toString().padStart(2, '0');
+    if (i === currentIndex) c.classList.add('current');
+    else if (q.flagged) c.classList.add('flagged');
+    else if (q.answered) c.classList.add('answered');
+    c.addEventListener('click', () => loadQuestion(i));
+    grid.appendChild(c);
+  });
+
+  const total = sessionQuestions.length;
+  const attempted = sessionQuestions.filter(q => q.answered).length;
+  const flagged = sessionQuestions.filter(q => q.flagged).length;
+  document.getElementById('sum-pct').textContent = total ? Math.round((attempted/total)*100) + '%' : '0%';
+  document.getElementById('sum-attempted').textContent = attempted;
+  document.getElementById('sum-flagged').textContent = flagged;
+  document.getElementById('sum-total').textContent = total;
 }
 
 // ── LOAD QUESTION ──
-function loadQuestion() {
-  answered = false;
+function loadQuestion(idx) {
   clearInterval(timerInterval);
-
-  const total = sessionQuestions.length;
+  currentIndex = idx;
   const q = sessionQuestions[currentIndex];
+  const total = sessionQuestions.length;
 
-  // Shuffle options
-  const originalOptions = [...q.options];
-  const indices = shuffle([0,1,2,3]);
-  const shuffledOptions = indices.map(i => originalOptions[i]);
-  const correctShuffledIndex = indices.indexOf(q.answerIndex);
+  document.getElementById('info-left').textContent = `Question No: ${currentIndex + 1} of ${total}`;
+  document.getElementById('info-right').innerHTML =
+    `<span>Marks: 1 ${timerSeconds > 0 ? `(Time: ${timerSeconds}s)` : ''}</span>`;
 
-  // Progress
-  const pct = (currentIndex / total) * 100;
-  document.getElementById('progress-fill').style.width = pct + '%';
-
-  // Stats
-  document.getElementById('stat-num').textContent = `${currentIndex + 1}/${total}`;
-  document.getElementById('stat-score').textContent = score;
-  document.getElementById('stat-wrong').textContent = wrongAnswers.length;
-  document.getElementById('q-number').textContent = `QUESTION ${currentIndex + 1} OF ${total}`;
   document.getElementById('q-text').textContent = q.question;
 
-  // Options
   const grid = document.getElementById('options-grid');
   grid.innerHTML = '';
   const letters = ['A','B','C','D'];
 
-  shuffledOptions.forEach((opt, i) => {
-    const btn = document.createElement('button');
-    btn.className = 'option-btn';
-    btn.innerHTML = `<span class="option-letter">${letters[i]}</span><span>${opt}</span>`;
-    btn.addEventListener('click', () => selectAnswer(i, correctShuffledIndex, q, shuffledOptions, btn));
-    grid.appendChild(btn);
+  q.shuffledOptions.forEach((opt, i) => {
+    const row = document.createElement('div');
+    row.className = 'option-row';
+    row.innerHTML = `<div class="radio"></div><span class="opt-text">${letters[i]}) ${opt}</span>`;
+
+    if (i === q.selected) row.classList.add('selected');
+
+    if (q.timedOut) {
+      row.classList.add('locked');
+    } else {
+      row.addEventListener('click', () => selectAnswer(i));
+    }
+    grid.appendChild(row);
   });
 
-  // Feedback
+  // Feedback strip — neutral only, no correctness reveal during the quiz
   const fb = document.getElementById('feedback-bar');
-  fb.className = 'feedback-bar';
-  fb.textContent = '';
+  fb.className = 'feedback-strip';
+  if (q.timedOut) {
+    fb.classList.add('show', 'info');
+    fb.textContent = '⏰ Time ran out on this question.';
+  }
 
-  // Next button
-  document.getElementById('btn-next').style.display = 'none';
+  // Flag button state
+  document.getElementById('btn-flag').classList.toggle('active', q.flagged);
 
-  // Timer
-  if (timerSeconds > 0) {
-    timeLeft = timerSeconds;
-    updateTimerDisplay();
-    timerInterval = setInterval(() => {
-      timeLeft--;
-      updateTimerDisplay();
-      if (timeLeft <= 0) {
-        clearInterval(timerInterval);
-        // Time's up — auto-wrong
-        if (!answered) {
-          answered = true;
-          disableOptions();
-          wrongAnswers.push({ q, userAnswer: 'TIME OUT', correct: q.options[q.answerIndex] });
-          document.getElementById('stat-wrong').textContent = wrongAnswers.length;
-          showFeedback(false, 'TIME UP!');
-          highlightCorrect(correctShuffledIndex);
-          document.getElementById('btn-next').style.display = 'block';
-        }
+  // Nav button enable/disable
+  document.getElementById('btn-first').disabled = currentIndex === 0;
+  document.getElementById('btn-prev').disabled = currentIndex === 0;
+  document.getElementById('btn-last').disabled = currentIndex === total - 1;
+  document.getElementById('btn-next').disabled = currentIndex === total - 1;
+
+  renderSummary();
+  startTimer(q);
+}
+
+function startTimer(q) {
+  const timerEl = document.getElementById('top-timer');
+  const numEl = document.getElementById('top-timer-num');
+
+  if (timerSeconds <= 0 || q.timedOut) {
+    numEl.textContent = q.timedOut ? '⏰' : '--';
+    timerEl.classList.remove('warn');
+    return;
+  }
+
+  timeLeft = timerSeconds;
+  numEl.textContent = timeLeft;
+  timerEl.classList.remove('warn');
+
+  timerInterval = setInterval(() => {
+    timeLeft--;
+    numEl.textContent = timeLeft;
+    if (timeLeft <= 10) timerEl.classList.add('warn'); else timerEl.classList.remove('warn');
+
+    if (timeLeft <= 0) {
+      clearInterval(timerInterval);
+      const qNow = sessionQuestions[currentIndex];
+      if (!qNow.answered) {
+        qNow.answered = true;
+        qNow.selected = -1;
+        qNow.timedOut = true;
+        loadQuestion(currentIndex);
       }
-    }, 1000);
-  } else {
-    document.getElementById('stat-timer').textContent = '--';
-  }
+    }
+  }, 1000);
 }
 
-function updateTimerDisplay() {
-  const el = document.getElementById('stat-timer');
-  el.textContent = timeLeft;
-  if (timeLeft <= 10) el.classList.add('timer-warn');
-  else el.classList.remove('timer-warn');
+function selectAnswer(chosen) {
+  const q = sessionQuestions[currentIndex];
+  if (q.timedOut) return;
+  q.answered = true;
+  q.selected = chosen;
+
+  // Only refresh the selected highlight, without restarting the per-question timer
+  const rows = document.querySelectorAll('#options-grid .option-row');
+  rows.forEach((row, i) => row.classList.toggle('selected', i === chosen));
+
+  renderSummary();
 }
 
-function selectAnswer(chosen, correct, q, shuffledOptions, btn) {
-  if (answered) return;
-  answered = true;
-  clearInterval(timerInterval);
+// ── ACTION BAR ──
+document.getElementById('btn-first').addEventListener('click', () => loadQuestion(0));
+document.getElementById('btn-last').addEventListener('click', () => loadQuestion(sessionQuestions.length - 1));
+document.getElementById('btn-prev').addEventListener('click', () => { if (currentIndex > 0) loadQuestion(currentIndex - 1); });
+document.getElementById('btn-next').addEventListener('click', () => { if (currentIndex < sessionQuestions.length - 1) loadQuestion(currentIndex + 1); });
 
-  const btns = document.querySelectorAll('.option-btn');
-  disableOptions();
+document.getElementById('btn-flag').addEventListener('click', () => {
+  const q = sessionQuestions[currentIndex];
+  q.flagged = !q.flagged;
+  document.getElementById('btn-flag').classList.toggle('active', q.flagged);
+  renderSummary();
+});
 
-  if (chosen === correct) {
-    score++;
-    btn.classList.add('correct');
-    document.getElementById('stat-score').textContent = score;
-    showFeedback(true, '✓ CORRECT!');
-    spawnParticles(btn, '#39ff14');
-  } else {
-    btn.classList.add('wrong');
-    highlightCorrect(correct);
-    wrongAnswers.push({
-      q,
-      userAnswer: shuffledOptions[chosen],
-      correct: shuffledOptions[correct]
-    });
-    document.getElementById('stat-wrong').textContent = wrongAnswers.length;
-    showFeedback(false, '✗ WRONG!');
-    spawnParticles(btn, '#ff2244');
-  }
-
-  document.getElementById('btn-next').style.display = 'block';
-}
-
-function highlightCorrect(idx) {
-  const btns = document.querySelectorAll('.option-btn');
-  if (btns[idx]) btns[idx].classList.add('correct');
-}
-
-function disableOptions() {
-  document.querySelectorAll('.option-btn').forEach(b => b.disabled = true);
-}
-
-function showFeedback(correct, msg) {
+document.getElementById('btn-save').addEventListener('click', () => {
   const fb = document.getElementById('feedback-bar');
-  fb.textContent = msg;
-  fb.className = `feedback-bar show ${correct ? 'correct-fb' : 'wrong-fb'}`;
-}
-
-// ── PARTICLES ──
-function spawnParticles(btn, color) {
-  const rect = btn.getBoundingClientRect();
-  for (let i = 0; i < 8; i++) {
-    const p = document.createElement('div');
-    p.className = 'particle';
-    const size = Math.random() * 8 + 4;
-    p.style.cssText = `
-      width: ${size}px; height: ${size}px;
-      background: ${color};
-      left: ${rect.left + Math.random() * rect.width}px;
-      top: ${rect.top + window.scrollY + Math.random() * rect.height}px;
-      box-shadow: 0 0 6px ${color};
-    `;
-    document.body.appendChild(p);
-    setTimeout(() => p.remove(), 1000);
+  const q = sessionQuestions[currentIndex];
+  if (!q.answered) {
+    fb.className = 'feedback-strip show bad';
+    fb.textContent = '⚠ Select an answer before saving.';
+    return;
   }
-}
+  fb.className = 'feedback-strip show ok';
+  fb.textContent = '💾 Answer saved.';
+});
 
-// ── NEXT QUESTION ──
-document.getElementById('btn-next').addEventListener('click', () => {
-  currentIndex++;
-  if (currentIndex >= sessionQuestions.length) {
-    showResults();
-  } else {
-    loadQuestion();
+document.getElementById('btn-finish').addEventListener('click', () => {
+  const attempted = sessionQuestions.filter(q => q.answered).length;
+  const total = sessionQuestions.length;
+  if (attempted < total) {
+    if (!confirm(`You've attempted ${attempted} of ${total} questions. Finish exam anyway?`)) return;
   }
+  showResults();
 });
 
 // ── RESULTS ──
@@ -1103,31 +1023,47 @@ function showResults() {
   hide('quiz-screen');
   show('result-screen');
 
+  document.getElementById('info-left').textContent = 'MCQ Zone — Results';
+  document.getElementById('info-right').innerHTML = '';
+  document.getElementById('top-timer-num').textContent = '--';
+  document.getElementById('top-timer').classList.remove('warn');
+
   const total = sessionQuestions.length;
-  const pct = Math.round((score / total) * 100);
+  const correct = sessionQuestions.filter(q => q.answered && q.selected === q.correctShuffledIndex).length;
+  const wrong = sessionQuestions.filter(q => q.answered && q.selected !== q.correctShuffledIndex).length +
+                sessionQuestions.filter(q => !q.answered).length;
+  const pct = total ? Math.round((correct/total)*100) : 0;
 
   document.getElementById('result-pct').textContent = pct + '%';
-  document.getElementById('res-correct').textContent = score;
-  document.getElementById('res-wrong').textContent = wrongAnswers.length;
+  document.getElementById('res-correct').textContent = correct;
+  document.getElementById('res-wrong').textContent = wrong;
   document.getElementById('res-total').textContent = total;
 
-  // Review list
   const list = document.getElementById('review-list');
   list.innerHTML = '';
-  if (wrongAnswers.length === 0) {
+  const wrongOnes = sessionQuestions.filter(q => !q.answered || q.selected !== q.correctShuffledIndex);
+
+  const practiceBtn = document.getElementById('btn-practice-wrong');
+
+  if (wrongOnes.length === 0) {
     document.getElementById('btn-review-toggle').textContent = '🏆 PERFECT SCORE — NO WRONG ANSWERS!';
-    document.getElementById('btn-review-toggle').style.borderColor = 'var(--neon-green)';
-    document.getElementById('btn-review-toggle').style.color = 'var(--neon-green)';
+    document.getElementById('btn-review-toggle').style.borderColor = 'var(--green)';
+    document.getElementById('btn-review-toggle').style.color = 'var(--green)';
+    practiceBtn.style.display = 'none';
   } else {
-    document.getElementById('btn-review-toggle').textContent = `📝 REVIEW ${wrongAnswers.length} WRONG ANSWERS`;
-    wrongAnswers.forEach(({ q, userAnswer, correct }, i) => {
+    practiceBtn.style.display = 'block';
+    practiceBtn.textContent = `🎯 Practice ${wrongOnes.length} Wrong Answer${wrongOnes.length > 1 ? 's' : ''} Again`;
+    document.getElementById('btn-review-toggle').textContent = `📝 REVIEW ${wrongOnes.length} WRONG / UNANSWERED`;
+    wrongOnes.forEach((q, i) => {
+      const yourAns = q.answered ? q.shuffledOptions[q.selected] : 'Not answered';
+      const correctAns = q.shuffledOptions[q.correctShuffledIndex];
       const item = document.createElement('div');
       item.className = 'review-item';
       item.innerHTML = `
         <div class="review-item-q"><strong>Q${i+1}:</strong> ${q.question}</div>
         <div class="review-item-ans">
-          <span class="review-tag tag-your">Your: ${userAnswer}</span>
-          <span class="review-tag tag-correct">Correct: ${correct}</span>
+          <span class="review-tag tag-your">Your: ${yourAns}</span>
+          <span class="review-tag tag-correct">Correct: ${correctAns}</span>
         </div>`;
       list.appendChild(item);
     });
@@ -1135,21 +1071,50 @@ function showResults() {
 }
 
 document.getElementById('btn-review-toggle').addEventListener('click', () => {
-  const list = document.getElementById('review-list');
-  list.classList.toggle('open');
+  document.getElementById('review-list').classList.toggle('open');
 });
 
-// ── PLAY AGAIN (same questions) ──
 document.getElementById('btn-again').addEventListener('click', () => {
-  sessionQuestions = shuffle(sessionQuestions);
+  sessionQuestions = shuffle(sessionQuestions).map(q => {
+    const indices = shuffle([0,1,2,3]);
+    const shuffledOptions = indices.map(i => q.options[i]);
+    const correctShuffledIndex = indices.indexOf(q.answerIndex);
+    return { ...q, shuffledOptions, correctShuffledIndex, selected: null, answered: false, flagged: false, timedOut: false };
+  });
   startQuiz();
 });
 
-// ── RESET (back to setup) ──
+document.getElementById('btn-practice-wrong').addEventListener('click', () => {
+  const wrongOnes = sessionQuestions.filter(q => !q.answered || q.selected !== q.correctShuffledIndex);
+  if (wrongOnes.length === 0) return;
+
+  sessionQuestions = shuffle(wrongOnes).map(q => {
+    const indices = shuffle([0,1,2,3]);
+    const shuffledOptions = indices.map(i => q.options[i]);
+    const correctShuffledIndex = indices.indexOf(q.answerIndex);
+    return {
+      question: q.question,
+      options: q.options,
+      answerIndex: q.answerIndex,
+      answerLetter: q.answerLetter,
+      shuffledOptions,
+      correctShuffledIndex,
+      selected: null,
+      answered: false,
+      flagged: false,
+      timedOut: false
+    };
+  });
+
+  startQuiz();
+});
+
 document.getElementById('btn-reset').addEventListener('click', () => {
   hide('result-screen');
   hide('quiz-screen');
   show('setup-screen');
+  document.getElementById('info-left').textContent = 'MCQ Zone — Setup';
+  document.getElementById('info-right').innerHTML = '';
 });
 </script>
 </body>
