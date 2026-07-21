@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MCQS Zone — Exam Mode</title>
+<title>MCQ Zone — Exam Mode</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap');
 
@@ -184,7 +184,21 @@
     padding: 46px 20px 20px;
   }
 
-  #setup-screen, #result-screen { max-width: 760px; margin: 0 auto; padding-top: 20px; }
+  #setup-screen { max-width: 1100px; margin: 0 auto; padding-top: 20px; }
+  #result-screen { max-width: 760px; margin: 0 auto; padding-top: 20px; }
+
+  .setup-grid {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 20px;
+    align-items: start;
+  }
+
+  @media (max-width: 860px) {
+    .setup-grid { grid-template-columns: 1fr; }
+  }
+
+  .setup-side { display: flex; flex-direction: column; gap: 20px; }
 
   .main-grid {
     display: grid;
@@ -612,14 +626,10 @@
 
   <!-- ── SETUP ── -->
   <div id="setup-screen">
-    <div class="setup-card">
-      <div class="setup-label">👤 YOUR NAME</div>
-      <input type="text" class="name-input" id="name-input" placeholder="Enter your name (optional — defaults to Guest)">
-    </div>
-
-    <div class="setup-card">
-      <div class="setup-label">📋 PASTE YOUR MCQs</div>
-      <textarea id="mcq-input" placeholder="Paste your MCQs here...
+    <div class="setup-grid">
+      <div class="setup-card">
+        <div class="setup-label">📋 PASTE YOUR MCQs</div>
+        <textarea id="mcq-input" placeholder="Paste your MCQs here...
 
 Supported formats:
 1. What is X? A) foo B) bar C) baz D) qux Answer: B
@@ -627,31 +637,40 @@ or
 1. What is X?
 A) foo  B) bar  C) baz  D) qux
 Answer: B"></textarea>
-      <div class="format-hint">
-        Each question needs: question text → options (A/B/C/D) → <code>Answer: X</code><br>
-        Questions can be numbered or not. Spaces/newlines are handled automatically.
-      </div>
-    </div>
-
-    <div class="setup-card">
-      <div class="setup-label">🎯 QUESTIONS PER ROUND</div>
-      <div class="pill-row">
-        <div class="setup-pill" data-count="10">10</div>
-        <div class="setup-pill active" data-count="20">20</div>
-        <div class="setup-pill" data-count="50">50</div>
-        <div class="setup-pill" data-count="all">ALL</div>
+        <div class="format-hint">
+          Each question needs: question text → options (A/B/C/D) → <code>Answer: X</code><br>
+          Questions can be numbered or not. Spaces/newlines are handled automatically.
+        </div>
       </div>
 
-      <div class="timer-label-row">⏱ SECONDS PER QUESTION</div>
-      <div class="pill-row">
-        <div class="setup-pill" data-timer="0">OFF</div>
-        <div class="setup-pill" data-timer="15">15s</div>
-        <div class="setup-pill active" data-timer="30">30s</div>
-        <div class="setup-pill" data-timer="60">60s</div>
+      <div class="setup-side">
+        <div class="setup-card">
+          <div class="setup-label">👤 YOUR NAME</div>
+          <input type="text" class="name-input" id="name-input" placeholder="Enter your name (optional — defaults to Guest)">
+        </div>
+
+        <div class="setup-card">
+          <div class="setup-label">🎯 QUESTIONS PER ROUND</div>
+          <div class="pill-row">
+            <div class="setup-pill" data-count="10">10</div>
+            <div class="setup-pill active" data-count="20">20</div>
+            <div class="setup-pill" data-count="50">50</div>
+            <div class="setup-pill" data-count="all">ALL</div>
+          </div>
+
+          <div class="timer-label-row">⏱ SECONDS PER QUESTION</div>
+          <div class="pill-row">
+            <div class="setup-pill" data-timer="0">OFF</div>
+            <div class="setup-pill" data-timer="15">15s</div>
+            <div class="setup-pill active" data-timer="30">30s</div>
+            <div class="setup-pill" data-timer="60">60s</div>
+          </div>
+        </div>
       </div>
     </div>
 
     <div class="loading-msg" id="loading-msg">⚙ PARSING QUESTIONS...</div>
+
 
     <button class="btn-launch" id="btn-start">▶ &nbsp; START EXAM</button>
   </div>
